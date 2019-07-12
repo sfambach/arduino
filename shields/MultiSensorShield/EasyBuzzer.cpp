@@ -156,3 +156,4 @@ void EasyBuzzerClass::update()
 }
 
 EasyBuzzerClass EasyBuzzer;
+

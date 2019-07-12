@@ -193,3 +193,4 @@ void DHT_Unified::Humidity::getSensor(sensor_t* sensor) {
       break;
   }
 }
+

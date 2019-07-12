@@ -1,4 +1,4 @@
-#include "MultiSensor.h"
+#include "MultiSensorShield.h"
 
 MultiSensor ms;
 
@@ -12,3 +12,4 @@ void loop(){
   delay(100);
   
 }
+

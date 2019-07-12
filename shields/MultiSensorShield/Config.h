@@ -9,6 +9,8 @@ Copyright (c) 2017 Evert Arias
 
 #pragma once
 
+
+
 #ifndef _Config_h
 #define _Config_h
 
@@ -23,3 +25,4 @@ Copyright (c) 2017 Evert Arias
 #define DEFAULT_PAUSE_DURATION	100 // Default PAUSE duration of a cycle in milliseconds(ms).
 
 #endif
+

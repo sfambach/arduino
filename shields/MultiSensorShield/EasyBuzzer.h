@@ -79,3 +79,4 @@ class EasyBuzzerClass
 extern EasyBuzzerClass EasyBuzzer;
 
 #endif
+
