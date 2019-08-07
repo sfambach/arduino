@@ -1,6 +1,6 @@
 # arduino nano rf
 
-![Image of shield](./img/banner.jpg)
+![Image of shield](./img/NanoRFPerspective.jpg)
 
 Here is my code for the Nano RF replica.
 It is a Arduino Nano compatible board with an NRF24 Chip on it.
