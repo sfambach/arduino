@@ -1,4 +1,4 @@
-Sunfonder Remote compatible with Arduino Nano
+Sunfounder Remote compatible with Arduino Nano
 
 ![Image of shield](./img/banner.jpg)
 
