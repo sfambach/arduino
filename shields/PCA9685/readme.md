@@ -6,7 +6,7 @@ There are two parts in the test program.
 - getting integer (0-180 degree) from the command line and driving all servos to this value
 
 This project is for the following shield:
-![Image of shield](./img/pca9685ServoDriverBoard-perspective.jpg)
+![Image of shield](./img/pca9685ServoDriverBoard-top.jpg)
 
 and needs the following libraries:
 
