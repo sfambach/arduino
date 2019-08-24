@@ -91,7 +91,6 @@ void loop() {
 
     for (int i = 0; i < servoMax ; i++) {
       servodrv.setPin(i, pos);
-
     }
 
   }
