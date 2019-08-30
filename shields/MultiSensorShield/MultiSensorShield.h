@@ -1,3 +1,9 @@
+/** Simple test for Multi Sensor Shield
+ *  www.fambach.net
+ *  GPLv2
+ */
+
+
 #ifndef multi_senosor_h
 #define multi_senosor_h
 /********************************************************/
@@ -5,7 +11,9 @@
 #include "DHT.h"
 #include "EasyBuzzer.h"
 #include "boarddefs.h"
-#include <IRremote.h>
+
+//#define TIMER_PWM_PIN
+#include "src/IRremote/IRremote.h"
 
 
 /********************************************************/
@@ -30,7 +38,7 @@
 
 int RECV_PIN = IR;
 
-char* codeNames[] {"Schuss", "RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN","ON"};
+const char* codeNames[] {"Schuss", "RED", "GREEN", "BLUE", "YELLOW", "MAGENTA", "CYAN","ON"};
 long codes[] {0xFF6897, 0xFF6897, 0xFF9867, 0xFFB04F, 0xFF4AB5, 0xFF42BD, 0xFF5AA5, 0xFFA25D};
 
 
@@ -42,6 +50,7 @@ class MultiSensor {
     decode_results _results;
     int _curProg = 0;
     const int _maxProg = 10;
+    bool _test = false;
 
   public:
     enum Color {
@@ -78,7 +87,7 @@ class MultiSensor {
       boolean state = false;
 
       state  =  !digitalRead(SWITCH1);
-      if (state) {
+      if (state && _test) {
         _curProg ++;
         if (_curProg > _maxProg) {
           _curProg = 0;
@@ -95,7 +104,7 @@ class MultiSensor {
       boolean state = false;
 
       state  =  !digitalRead(SWITCH2);
-      if (state) {
+      if (state && _test) {
         _curProg --;
         if (_curProg < 0) {
           _curProg = _maxProg;
@@ -208,7 +217,7 @@ class MultiSensor {
       for (int i = 0; i < 8 ; i++) {
         //Serial.println(codes[i], HEX);
         if (codes[i] == res) {
-          setRGBLed(i) ;
+          setRGBLed((Color)i) ;
           Serial.print("-> ");
           Serial.print(codeNames[i]);
           Serial.print(" <-");
@@ -224,7 +233,7 @@ class MultiSensor {
 
     void loop(boolean test = false) {
       EasyBuzzer.update();
-
+      _test = test;
       if (test) {
         setRedLED(getSwitch1());
         setBlueLED(getSwitch2());

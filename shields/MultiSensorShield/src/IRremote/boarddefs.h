@@ -189,10 +189,11 @@
   #define TIMER_PRESCALER_DIV 64
 
 #else
+//#warning Test TEST -------------------------------------------------------------------------
 // Arduino Duemilanove, Diecimila, LilyPad, Mini, Fio, Nano, etc
 // ATmega48, ATmega88, ATmega168, ATmega328
-  //#define IR_USE_TIMER1   // tx = pin 9
- #define IR_USE_TIMER2     // tx = pin 3
+ #define IR_USE_TIMER1   // tx = pin 9
+ //#define IR_USE_TIMER2     // tx = pin 3
 
 #endif
 

@@ -1,3 +1,8 @@
+/** Simple test for Multi Sensor Shield
+ *  www.fambach.net
+ *  GPLv2
+ */
+ 
 #include "MultiSensorShield.h"
 
 MultiSensor ms;
