@@ -1,7 +1,7 @@
 Item Description:
  
  
-L298P motor driver shield adopts L298P driver chip, 
+(FunduMotor)L298P motor driver shield adopts L298P driver chip, 
 such chip is exclusively made for high-quality large power motor. 
 It can directly drive two DC motors with driving current reaching 2A. 
 The output port of the motor carries eight high speed Schottky diodes as its protection. 
@@ -24,8 +24,9 @@ Drive: Dual road large power H bridge drive
 ![Image of shield](./img/L298PHighPowerMotorBridgePerspective.jpg)
 
 
-and needs the following libraries:
+and needs the following libraries (a copy is in the src directory):
 
+https://github.com/evert-arias/EasyBuzzer
 
 
 Visit http://www.fambach.net for more informations.
