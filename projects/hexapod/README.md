@@ -1,6 +1,6 @@
 # arduino
 
-Hexapod Project
+Hexapod Project (This project is not jet finished)
 
 Bot it self is 3D printed with a model of thingiverse
 https://www.thingiverse.com/thing:1021540
