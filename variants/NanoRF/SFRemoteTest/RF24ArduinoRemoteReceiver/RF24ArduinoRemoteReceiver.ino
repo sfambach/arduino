@@ -29,7 +29,7 @@ void setup() {
   radio.begin();                      // initialize RF24
   radio.setRetries(0, 15);            // set retries times
   radio.setPALevel(RF24_PA_LOW);      // set power
-  radio.setChannel(99); // Suggestion from Jens
+  // radio.setChannel(99); // Suggestion from Jens in case of any trouble activate this
   
   radio.openWritingPipe(addresses[0]);
   radio.openReadingPipe(1, addresses[1]);
