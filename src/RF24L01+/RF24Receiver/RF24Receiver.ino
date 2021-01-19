@@ -10,17 +10,19 @@
 #define PIN_CSN 10
 RF24 radio(PIN_CE, PIN_CSN);
 byte addresses[][6] = {"007", "001"};
-int data[1] = {0}; 
+
+#define SIZE 5 
+int data[SIZE]; 
 
 /***********************************************************/
 
 void setup() {
   Serial.begin(9600);
-
+delay (2000);
   Serial.println("init rf");
   radio.begin();                      // initialize RF24
   radio.setRetries(0, 15);            // set retries times
-  radio.setPALevel(RF24_PA_LOW);      // set power
+  radio.setPALevel(RF24_PA_HIGH);      // set power
   radio.openWritingPipe(addresses[0]);
   radio.openReadingPipe(1, addresses[1]);
   radio.startListening();             // start monitoring
@@ -53,5 +55,3 @@ void receiveData() {
     // Serial.println("No radio available"); // just for testing that something happens
   }
 }
-
-

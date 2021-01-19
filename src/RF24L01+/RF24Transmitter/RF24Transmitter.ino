@@ -11,7 +11,7 @@
 
 RF24 radio(PIN_CE, PIN_CSN); // define the object to control NRF24L01
 byte addresses[][6] = {"007", "001"};
-int data[1] = {0};
+int data[3] = {0,512,512};
 
 void setup() {
   Serial.begin(9600);
@@ -20,10 +20,11 @@ void setup() {
   // init radio
   radio.begin();                      // initialize RF24
   radio.setRetries(0, 15);            // set retries times
-  radio.setPALevel(RF24_PA_LOW);      // set power
+  radio.setPALevel(RF24_PA_HIGH);      // set power
   radio.openWritingPipe(addresses[1]);  // open delivery channel
   radio.openReadingPipe(1, addresses[0]);
   radio.stopListening();
+  delay(1000);
 
 }
 
@@ -33,7 +34,7 @@ void loop() {
     Serial.print("Send: ");
     Serial.println(i);
     data[0] = i; // write current integer to the transfer array
-    radio.write(data, sizeof(data)); // send array
+    radio.write(data, sizeof(data),0); // send array
     delay(1000); // wait a second
   }
  
