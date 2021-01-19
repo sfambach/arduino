@@ -1,10 +1,11 @@
 ## Simple nRF24L01(+) Module test
-This project:
+This project contains:
 
-Receiver
-Transmtter
+Receiver Folder
 
-put each on an Arduino, and connect an nRF24 Module to them.
+Transmitter Folder
+
+put each of them on an Arduino, and connect an nRF24 Module.
 
 ![Wiring Sketch](img/Rf2401SketchTest_bb.png)
 
