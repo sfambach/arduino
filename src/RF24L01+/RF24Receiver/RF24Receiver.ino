@@ -1,6 +1,6 @@
 /** 
  *  RF24L01+ example 
- *  this example receive a single integer value
+ *  this example receives single integer values
  *  
  *  on Uno connect to spi
  *  ce    - pin 9 but free selectable
@@ -17,7 +17,7 @@
  * please do not forget to mention at least my website, thanks!  
 */
 /***********************************************************/
-// radio
+// RF24 Receiver
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
