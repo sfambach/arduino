@@ -1,0 +1,3 @@
+#define SECRET_SSID "TEST"
+#define SECRET_PASS "TEST123456789"
+

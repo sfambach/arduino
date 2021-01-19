@@ -13,6 +13,7 @@ XPod xpod(6);
 
 void setup(){
   Serial.begin(115200);
+  
   xpod.setup();
 }
 

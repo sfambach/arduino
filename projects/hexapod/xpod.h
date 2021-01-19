@@ -52,6 +52,7 @@ class XPod {
 
 
     void setMode(bool initial, Mode mode) {
+      Serial.println("TEST");
       _mode = mode;
 
       switch (_mode) {
