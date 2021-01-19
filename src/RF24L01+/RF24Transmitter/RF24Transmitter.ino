@@ -1,6 +1,22 @@
-// this program transmitts a single integer value
-// http://www.fambach.net
-/*************************************************/
+/** 
+ *  RF24L01+ example 
+ *  this example receive a single integer value
+ *  
+ *  on Uno connect to spi
+ *  ce    - pin 9 but free selectable
+ *  csn   - pin 10 but free selectable
+ *  MOSI  - Pin 11
+ *  MISO  - PIN 12
+ *  SCK   - PIN 13
+ *  
+ * Created by SteFam @ http://www.fambach.net
+ *
+ * GPLv3 
+ * Blah blah blah, free to use. 
+ * I invested some time and money in those examples if you want to delete this header 
+ * please do not forget to mention at least my website, thanks!  
+*/
+/***********************************************************/
 // RF
 #include <SPI.h>
 #include "nRF24L01.h"
