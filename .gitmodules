@@ -1,0 +1,18 @@
+[submodule "shields/SensorShieldV5/lib/Ultrasonic-HC-SR04"]
+	path = shields/SensorShieldV5/lib/Ultrasonic-HC-SR04
+	url = https://github.com/JRodrigoTech/Ultrasonic-HC-SR04
+[submodule "shields/SensorShieldV5/lib/HC-06-BT"]
+	path = shields/SensorShieldV5/lib/HC-06-BT
+	url = https://github.com/dennistreysa/HC-06-BT
+[submodule "shields/SensorShieldV5/examples/APC220_Transceiver"]
+	path = shields/SensorShieldV5/examples/APC220_Transceiver
+	url = https://github.com/inopya/APC220_Transceiver
+[submodule "shields/SensorShieldV5/examples/HC-06_Arduino_Echo"]
+	path = shields/SensorShieldV5/examples/HC-06_Arduino_Echo
+	url = https://github.com/ice3x2/HC-06_Arduino_Echo
+[submodule "shields/SensorShieldV5/lib/BAKS_I2C_LCD_12864"]
+	path = shields/SensorShieldV5/lib/BAKS_I2C_LCD_12864
+	url = https://github.com/baksovi4/BAKS_I2C_LCD_12864
+[submodule "shields/SensorShieldV5/lib/OLED_LIB_VGY12864L_03"]
+	path = shields/SensorShieldV5/lib/OLED_LIB_VGY12864L_03
+	url = https://github.com/postfixNotation/OLED_LIB_VGY12864L_03

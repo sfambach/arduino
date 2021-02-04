@@ -22,8 +22,8 @@
 #include "nRF24L01.h"
 #include "RF24.h"
 
-#define PIN_CE   9
-#define PIN_CSN 10
+#define PIN_CE   7
+#define PIN_CSN 8
 RF24 radio(PIN_CE, PIN_CSN);
 byte addresses[][6] = {"007", "001"};
 
