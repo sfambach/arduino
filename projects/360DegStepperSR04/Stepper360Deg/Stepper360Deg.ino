@@ -10,7 +10,7 @@
 
 /******************************************************************************************************/
 //Stepper
-#include <AFMotor.h>
+#include <AFMotor.h> // https://github.com/adafruit/Adafruit-Motor-Shield-library
 
 #define STEP_COUNT 200
 #define ANGLE 1.8 // 360 degree / 200 steps
@@ -155,24 +155,24 @@ long getDistMM() {
 
 /******************************************************************************************************/
 #elif defined(FTMINI)
-#include "TFmini.h"
+#include "TFmini.h" // https://github.com/opensensinglab/tfmini modified by https://github.com/opensensinglab/tfmini/issues/9
 #include <SoftwareSerial.h>
 
 SoftwareSerial mySerial(A1, A0);
-TFmini tfmini;
+TFMini tfmini;
 
 void initDist() {
   // init the sensor
-  mySerial.begin(TFmini::DEFAULT_BAUDRATE);
-  tfmini.attach(mySerial);
+  mySerial.begin(TFMINI_BAUDRATE);
+  tfmini.begin(&mySerial);
 }
 
 long getDistMM() {
-  if (tfmini.available()) {
+ // if (tfmini.available()) {
     return tfmini.getDistance();
     //            Serial.println(tfmini.getStrength());
     //            Serial.println(tfmini.getIntegrationTime());
-  }
+  //}
   return -1;
 }
 /******************************************************************************************************/

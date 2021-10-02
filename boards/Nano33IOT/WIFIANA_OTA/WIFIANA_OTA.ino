@@ -22,6 +22,7 @@
 //#include <WiFi101.h>
 #include <WiFiNINA.h>
 #include <ArduinoOTA.h>
+#include <InternalStorageESP.h>
 
 #include "arduino_secrets.h" 
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h

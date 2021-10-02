@@ -1,3 +1,2 @@
-#define SECRET_SSID "TEST"
-#define SECRET_PASS "TEST123456789"
-
+#define SECRET_SSID "NODES"
+#define SECRET_PASS "HappyNodes1234"
