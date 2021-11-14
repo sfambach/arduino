@@ -45,15 +45,15 @@ void loop() {
 */
 void serialEvent() {
 
-  // read everything from the serial
+  // read something
+  if(Serial.available()){
+     char inChar = (char)Serial.read();
+     // add it to the inputString:
+     serialInput += inChar;
 
-  char inChar = (char)Serial.read();
-  // add it to the inputString:
-  serialInput += inChar;
+     if (inChar == '\n' ) {
+       stringComplete = true;
 
-  if (inChar == '\n' ) {
-    stringComplete = true;
-
+     }
   }
-
 }
