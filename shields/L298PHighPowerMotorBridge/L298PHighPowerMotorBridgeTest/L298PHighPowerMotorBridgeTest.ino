@@ -57,7 +57,7 @@ void loop() {
   // one direction
   digitalWrite(DIR1_PIN, HIGH);
   digitalWrite(DIR2_PIN, HIGH);
-  for (int i = 0; i < 255 ; i++) {
+  for (int i = 0; i < 1024 ; i++) {
     EasyBuzzer.update();
     Serial.print(i % 10 == 0 ? "." : "");
     analogWrite(PWM1_PIN, i);
@@ -139,4 +139,3 @@ void loop() {
 
   testBuzzer();
 }
-
