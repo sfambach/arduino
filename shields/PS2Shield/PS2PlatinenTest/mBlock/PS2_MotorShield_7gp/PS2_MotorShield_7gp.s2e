@@ -1,0 +1,200 @@
+{	
+	"extensionName": "PS2_MotorShield_7gp",
+	"description": "An Extension for Arduino Motor Shield",
+	"version": "1.0",
+	"author": "LinXiao(by 7gp.cn)",
+	"homepage": "http://www.7gp.cn",
+	"sort":0,
+	"javascriptURL":"js/PS2_MotorShield_7gp.js",
+  	"firmware":"1.0",
+  	"extensionPort":0,
+	"blockSpecs": [
+
+		[
+			"w",
+			"Run motor %d.motor direction %d.direction speed %d.speed",
+			"DCMotor",
+			"1",
+			"FORWARD",
+			"200",
+			{
+				"setup":"AFMS.begin(50);\n",
+				"inc":"#include \"Adafruit_MotorShield.h\"\n#include \"Adafruit_MS_PWMServoDriver.h\"\n ",
+				"def":"Adafruit_MotorShield AFMS = Adafruit_MotorShield();\nAdafruit_DCMotor *AdaDCMotor_{0} = AFMS.getMotor({0});\n\n",
+				"work":"AdaDCMotor_{0}->setSpeed({2});\n AdaDCMotor_{0}->run({1});\n",
+				"loop":""
+			}
+		],
+
+		[
+			"w",
+			"Stop motor %d.motor",
+			"DCMotorStop",
+			"1",
+			{
+				"setup":"",
+				"inc":"#include \"Adafruit_MotorShield.h\"\n#include \"Adafruit_MS_PWMServoDriver.h\"\n ",
+				"def":"Adafruit_MotorShield AFMS = Adafruit_MotorShield();\nAdafruit_DCMotor *AdaDCMotor_{0} = AFMS.getMotor({0});\n\n",
+				"work":"AdaDCMotor_{0}->setSpeed(0);\n AdaDCMotor_{0}->run(RELEASE);\n",
+				"loop":""
+			}
+		],
+		[
+			"w",
+			"PS2X_init",
+			"PS2X_init",
+			{
+				"setup":"int error = 0;do{ error = ps2x.config_gamepad(13,11,10,12, true, true);if(error == 0){break;}else{delay(100);}}while(1);\n",
+				"inc":"#include \"PS2X_lib.h\"\n ",
+				"def":"PS2X ps2x;\n",
+				"work":"",
+				"loop":""
+			}
+		],
+		[
+			"b",
+			"PS2 Boutton %d.PSBUTTON Pressed",
+			"PS2X_Button_Pressed",
+			"PSB_PAD_UP",
+			{
+				"setup":"",
+				"inc":" ",
+				"def":"",
+				"work":"ps2x.Button({0})",
+				"loop":""
+			}
+		],
+		[
+			"b",
+			"PS2 Boutton %d.PSBUTTON Released",
+			"PS2X_Button_Released",
+			"PSB_PAD_UP",
+			{
+				"setup":"",
+				"inc":" ",
+				"def":"",
+				"work":"ps2x.ButtonReleased({0})",
+				"loop":""
+			}
+		],
+		[
+			"r",
+			"PS2 Joystick %d.PS_STK ",
+			"PS_STK",
+			"PSS_LX",
+			{
+				"setup":"",
+				"inc":" ",
+				"def":"",
+				"work":"ps2x.Analog({0})",
+				"loop":""
+			}
+		],
+		[
+			"w",
+			"Servo %d.servo degrees %d",
+			"Servo",
+			"1",
+			"90",
+			{
+				"setup":"AFMS.begin(50);\n",
+				"inc":"#include \"Adafruit_MotorShield.h\"\n#include \"Adafruit_MS_PWMServoDriver.h\"\n ",
+				"def":"Adafruit_MotorShield AFMS = Adafruit_MotorShield();\nAdafruit_Servo *XServo{0} = AFMS.getServo({0});\n\n",
+				"work":"XServo{0}->writeServo({1});\n",
+				"loop":""
+			}
+		],[
+			"r",
+			"Read servo %d.servo degrees ",
+			"readDegrees",
+			"1",
+			{
+				"setup":"AFMS.begin(50);\n",
+				"inc":"#include \"Adafruit_MotorShield.h\"\n#include \"Adafruit_MS_PWMServoDriver.h\"\n ",
+				"def":"Adafruit_MotorShield AFMS = Adafruit_MotorShield();\nAdafruit_Servo *XServo{0} = AFMS.getServo({0});\n\n",
+				"work":"XServo{0}->readDegrees()",
+				"loop":""
+			}
+		],[
+			"w",
+			"Delay %d ms",
+			"Delay",
+			"10",
+			{
+				"setup":"",
+				"inc":"",
+				"def":"",
+				"work":"delay({0});\n",
+				"loop":""
+			}
+		],[
+			"w",
+			"PS2 read gamepad ",
+			"read_gamepad",
+			"10",
+			{
+				"setup":"",
+				"inc":"",
+				"def":"",
+				"work":"ps2x.read_gamepad(false, 0);\n",
+				"loop":""
+			}
+		],
+
+	],
+
+	"menus": {
+		"speed":[100,150,200,255],	
+		"motor":[1, 2, 3, 4],	
+		"servo":[1, 2, 3, 4],	
+		"direction":["FORWARD","BACKWARD"],
+		"PSBUTTON":["PSB_PAD_UP","PSB_PAD_DOWN","PSB_PAD_LEFT","PSB_PAD_RIGHT","PSB_TRIANGLE",
+		"PSB_CIRCLE","PSB_CROSS","PSB_SQUARE","PSB_L1","PSB_L2","PSB_L3","PSB_R1","PSB_R2","PSB_R3","PSB_SELECT","PSB_START"],	
+		"PS_STK":["PSS_LX","PSS_LY","PSS_RX","PSS_RY"],
+	},
+
+	"values":{
+		"FORWARD":1,
+		"BACKWARD":2,
+		"PSB_SELECT":     0x0001,
+		"PSB_L3":         0x0002,
+		"PSB_R3":         0x0004,
+		"PSB_START":      0x0008,
+		"PSB_PAD_UP":     0x0010,
+		"PSB_PAD_RIGHT":  0x0020,
+		"PSB_PAD_DOWN":   0x0040,
+		"PSB_PAD_LEFT":   0x0080,
+		"PSB_L2":         0x0100,
+		"PSB_R2":         0x0200,
+		"PSB_L1":         0x0400,
+		"PSB_R1":         0x0800,
+		"PSB_GREEN":      0x1000,
+		"PSB_RED":        0x2000,
+		"PSB_BLUE":       0x4000,
+		"PSB_PINK":       0x8000,
+		"PSB_TRIANGLE":   0x1000,
+		"PSB_CIRCLE":     0x2000,
+		"PSB_CROSS":      0x4000,
+		"PSB_SQUARE":     0x8000,
+		"PSS_RX":5,
+		"PSS_RY":6,
+		"PSS_LX":7,
+		"PSS_LY":8,
+	},
+
+
+	"translators":{
+		"zh_CN":{
+			"Run motor %d.motor direction %d.direction speed %d.speed":"设置电机 %d.motor 方向 %d.direction 速度 %d.speed",
+			"Stop motor %d.motor":"停止电机 %d.motor",
+			"PS2X_init":"PS2手柄初始化",
+			"PS2 Boutton %d.PSBUTTON Pressed":"手柄按钮 %d.PSBUTTON 被按下",
+			"PS2 Boutton %d.PSBUTTON Released":"手柄按钮 %d.PSBUTTON 松开",
+			"PS2 Joystick %d.PS_STK":"获取摇杆 %d.PS_STK 数值",
+			"Servo %d.servo degrees %d":"设置舵机 %d.servo 角度为 %d",
+			"Read servo %d.servo degrees ":"获取舵机 %d.servo 角度 ",
+			"Delay %d ms":"延时 %d 毫秒",
+			"PS2 read gamepad ":"读取手柄状态",
+		}
+	}
+}

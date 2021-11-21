@@ -1,0 +1,3 @@
+Motor_Shield_Library包含驱动器类库文件
+PS2X_ArmCar_Shield 是PS2手柄遥控机械臂小车的演示代码
+PS2X_Example  PS2手柄的遥控示例

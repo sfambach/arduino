@@ -41,8 +41,12 @@ uint8_t buflen = VW_MAX_MESSAGE_LEN;
 
 void setup() {
   Serial.begin(115200);
+
+  Serial.println("Setup A3 Pin for Transmission");
   vw_set_rx_pin(RF_RX_PIN);  // Setup receive pin.
+  Serial.println("Setup Transmission speed to 2000");
   vw_setup(2000); // Transmission speed in bits per second.
+  Serial.println("Start receiving");
   vw_rx_start(); // Start the PLL receiver.
 }
 uint8_t command;
@@ -54,15 +58,22 @@ uint8_t car_status = CAR_STOP;
 uint8_t new_status = car_status;
 
 
+int msToWait = 2000;
+int storedTime = millis() + msToWait;
 
 void loop() {
   if (vw_get_message(buf, &buflen)) // non-blocking I/O
   {
     command = decode();
-   
     Serial.print("\n");
+    storedTime = millis() + msToWait; // reset timeout
   }
 
+  if(storedTime < millis() ){
+    Serial.println("Nothing received since 2 Seconds");
+    storedTime = millis() + msToWait; // reset timeout
+  }
+ 
 }
 
 uint8_t decode()
