@@ -27,9 +27,8 @@ LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 void initDisplay() {
   lcd.begin(COLS, ROWS);    // start the library
   lcd.setCursor(0, 0);      // set the cursor to the upper left corner
-  initCustomChars(lcd);     // add the own chracters 
-    
   lcd.print("Bar Chart");   // print a simple message
+  initCustomChars(lcd);     // add the own chracters 
   digitalWrite(6, LOW);     // only for my board to switch the buzzer off
   delay(2000);              // wait some seconds to show the text
 }
