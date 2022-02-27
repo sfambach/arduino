@@ -13,6 +13,12 @@
 #define TRIGGER_PIN   8
 #define ECHO_PIN      7
 #define MAX_DISTANCE 300
+#define MAX_DUR 123456
+#define MIN_DUR 12
+#define SC_CM 0.1
+
+#define TO_SMALL 0x01
+#define TO_BIG 0x02
 NewPing sr04 (TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
 const int POS = 0;
@@ -97,7 +103,7 @@ Adafruit_MotorShield AFMS; // = Adafruit_MotorShield();
 Adafruit_DCMotor* motorLeft = AFMS.getMotor(3);
 Adafruit_DCMotor* motorRight = AFMS.getMotor(4);
 
-const int STEER_MAX = 80;
+const int STEER_MAX = 60;
 
 void stop() {
 
@@ -479,7 +485,7 @@ void freeDrive() {
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(300);
 
   /******************************************************************/
@@ -572,5 +578,5 @@ void loop() {
     case MODE_RC: rcDrive(); break;
     case MODE_FD: freeDrive(); break;
   }
-
+  delay(50);
 }
