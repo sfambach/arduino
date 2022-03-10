@@ -16,3 +16,6 @@
 [submodule "shields/SensorShieldV5/lib/OLED_LIB_VGY12864L_03"]
 	path = shields/SensorShieldV5/lib/OLED_LIB_VGY12864L_03
 	url = https://github.com/postfixNotation/OLED_LIB_VGY12864L_03
+[submodule "shields/NEO-6M_GpsLoggerShieldV1/lib/TinyGPSPlus"]
+	path = shields/NEO-6M_GpsLoggerShieldV1/lib/TinyGPSPlus
+	url = https://github.com/mikalhart/TinyGPSPlus
