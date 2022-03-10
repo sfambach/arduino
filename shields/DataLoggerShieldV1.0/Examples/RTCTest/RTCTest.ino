@@ -1,3 +1,10 @@
+/** RTC on a Data logger shield
+    Example is from Paul Stoffregen
+    Adapted by Stefan Fambach 2022 visit http://www.fambach.net if you want
+*/
+
+
+// includes
 #include <Wire.h>
 #include <TimeLib.h>
 #include <DS1307RTC.h>
@@ -10,8 +17,8 @@ const char *monthName[12] = {
 tmElements_t tm;
 
 void setup() {
-  bool parse=false;
-  bool config=false;
+  bool parse = false;
+  bool config = false;
 
   // get the date and time the compiler was run
   if (getDate(__DATE__) && getTime(__TIME__)) {
@@ -22,7 +29,7 @@ void setup() {
     }
   }
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) ; // wait for Arduino Serial Monitor
   delay(200);
   if (parse && config) {
