@@ -19,3 +19,9 @@
 [submodule "shields/NEO-6M_GpsLoggerShieldV1/lib/TinyGPSPlus"]
 	path = shields/NEO-6M_GpsLoggerShieldV1/lib/TinyGPSPlus
 	url = https://github.com/mikalhart/TinyGPSPlus
+[submodule "shields/DataLoggerShieldV1.0/lib/DS1307RTC"]
+	path = shields/DataLoggerShieldV1.0/lib/DS1307RTC
+	url = https://github.com/PaulStoffregen/DS1307RTC
+[submodule "shields/DataLoggerShieldV1.0/lib/Time"]
+	path = shields/DataLoggerShieldV1.0/lib/Time
+	url = https://github.com/PaulStoffregen/Time
