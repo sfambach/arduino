@@ -25,3 +25,6 @@
 [submodule "shields/DataLoggerShieldV1.0/lib/Time"]
 	path = shields/DataLoggerShieldV1.0/lib/Time
 	url = https://github.com/PaulStoffregen/Time
+[submodule "shields/VS1053MP3AudioShield/lib/Sparkfun-MP3-Player-Shield-Arduino-Library"]
+	path = shields/VS1053MP3AudioShield/lib/Sparkfun-MP3-Player-Shield-Arduino-Library
+	url = https://github.com/madsci1016/Sparkfun-MP3-Player-Shield-Arduino-Library.git
