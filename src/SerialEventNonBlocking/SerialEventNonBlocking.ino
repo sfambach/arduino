@@ -46,14 +46,4 @@ void loop() {
 void serialEvent() {
 
   // read something
-  if(Serial.available()){
-     char inChar = (char)Serial.read();
-     // add it to the inputString:
-     serialInput += inChar;
-
-     if (inChar == '\n' ) {
-       stringComplete = true;
-
-     }
-  }
 }

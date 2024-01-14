@@ -1,6 +1,6 @@
 Ethernet Shield
 
-![Image of shield](./img/ArduinoEthernetShieldPers.jpg)
+![Image of shield](./img/ArduinoUnoEtherhnetShield-perspective.jpg)
 
 Used Libs:
 
