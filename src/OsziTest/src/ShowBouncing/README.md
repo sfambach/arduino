@@ -9,3 +9,8 @@ have to test it some times to get the result.
 Define input and ouput pin
 * PIN_IN (Default GPIO18) - Input for the button
 * PIN_OUT (Default GPIO 19) - Output for measurement and/or LED
+
+
+## Credits
+* Author:  S. Fambach
+* Website: http://www.fambach.net if you want
