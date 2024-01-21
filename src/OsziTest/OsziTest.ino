@@ -1,5 +1,5 @@
 /******************************************************************************
-* 
+* Oszilloscope Test
 * Licence: AGPL3
 * Author: S. Fambach
 * Visit http://www.fambach.net if you want
@@ -16,36 +16,18 @@
 #define DEBUG_PRINT(x)
 #endif
 
-uint8_t PIN = 19;
+/** Select Test****************************************************************/
+
+#define BLOCKING_BLINK
+//#define NONE_BLOCKING_BLINK
+//#define PWM
+//#define UART
+//#define I2C
+//#define DHT
 
 
-const char PROG_HELP  = 'h';
-const char PROG_BLINK = 'b'; // blinks
-const char PROG_PWM   = 'p';
+uint8_t BLOCKING_PIN = 19;
 
-
-const char DELIMIT_NEW_LINE = '\n';
-const char DELIMIT_ROLLBACK =  '\r';
-const char DELIMIT_LINE_FEED = '\0';
-const char DELIMIT_SPACE = ' ';
-  
-char currentProg = PROG_BLINK;
-
-char argv1[10];
-char argv2[10];
-//mainProgCalls
-
-
-
-/** HELP *********************************************************************/
-
-void help(){
-
-  Serial.println( F("h - This help text \n"));
-  Serial.println( F("b - (default after start) blink \n"));
-  Serial.println( F("h - This help text \n"));
-
-}
 
 
 /** BLINK ********************************************************************/
@@ -64,19 +46,90 @@ void progBlink(){
 }
 
 /** PWM **********************************************************************/
+#define PWM1_Ch    0
+#define PWM1_Res   8
+#define PWM1_Freq  1000
+int PWM1_DutyCycle = 100; 
+
 void progPwm(){
-
-
+  while(PWM1_DutyCycle < 255)
+  {
+    ledcWrite(PWM1_Ch, PWM1_DutyCycle++);
+    delay(100);
+  }
+  while(PWM1_DutyCycle > 0)
+  {
+    ledcWrite(PWM1_Ch, PWM1_DutyCycle--);
+    delay(100);
+  }
 }
 
 
 /** XXXXXXXX *****************************************************************/
-/** XXXXXXXX *****************************************************************/
+/** Input  *****************************************************************/
+
+const char PROG_HELP  = 'h';
+const char PROG_BLINK = 'b'; // blinks
+const char PROG_PWM   = 'p';
+
+
+const char DELIMIT_NEW_LINE = '\n';
+const char DELIMIT_ROLLBACK =  '\r';
+const char DELIMIT_LINE_FEED = '\0';
+const char DELIMIT_SPACE = ' ';
+  
+char currentProg = PROG_BLINK;
+
+char argv1[10];
+char argv2[10];
+//mainProgCalls
+char buffer[20];
+int bufferCounter = 0;
+bool initial = false;
+
+void processInput(){
+    if (Serial.available() < 1) {
+      return;
+    }
+
+    int rec = Serial.read();
+    
+    if(rec == DELIMIT_LINE_FEED || rec == DELIMIT_NEW_LINE || rec == DELIMIT_ROLLBACK){
+          // end of input so lets see what we have
+           //DEBUG_PRINTLN(rec);
+          if(bufferCounter > 0){ // there is something in the buffer!
+             
+             switch(buffer[0]){
+              case PROG_HELP: help(); break;
+              case PROG_BLINK: currentProg = PROG_BLINK;
+                  savedTime = 0;
+               /* int arg1 = atoi(argv1);
+                if(arg1 > 0 ){
+                  delayMillis = arg1
+                }
+                
+                atoi(buffer[1]);*/
+                break;
+              case PROG_PWM: currentProg = PROG_PWM;
+              initial = true;
+              ledcAttachPin(PIN, PWM1_Ch);
+              ledcSetup(PWM1_Ch, PWM1_Freq, PWM1_Res);
+              break;
+              
+             }
+             
+         
+          }  
+          bufferCounter = 0;
+        } else {
+          buffer[bufferCounter]= rec;
+          bufferCounter++;
+        }
+}
 
 
 /** Main Programm ************************************************************/
-char buffer[20];
-int bufferCounter = 0;
+
 void setup() {
   // init serial port for output
   Serial.begin(115200);
@@ -90,46 +143,17 @@ void setup() {
 }
 
 
-bool initial = true;
+
+
+
 void loop() {
 
-    if (Serial.available() > 0) {
-        int rec = Serial.read();
-        //DEBUG_PRINTLN(rec);
-        if(rec == DELIMIT_LINE_FEED || rec == DELIMIT_NEW_LINE || rec == DELIMIT_ROLLBACK){
-          // end of input so lets see what we have
-           //DEBUG_PRINTLN(rec);
-          if(bufferCounter > 0){ // there is something in the buffer!
-             
-             switch(buffer[0]){
-              case PROG_HELP: help(); break;
-              case PROG_BLINK: currentProg = PROG_BLINK;
-                int arg1 = atoi(argv1);
-                if(arg1 > 0 ){
-                  delayMillis = arg1
-                }
-                savedTime = 0;
-                atoi(buffer[1]);
-                break;
-              case PROG_PWM: currentProg = PROG_PWM;
-              break;
-              
-             }
-             
-         
-          }  
-          bufferCounter = 0;
-        } else {
-          buffer[bufferCounter]= rec;
-          bufferCounter++;
-        }
-     } else {
-        switch(currentProg){
+      processInput();
+
+      switch(currentProg){
               case PROG_BLINK: progBlink(); break;
               case PROG_PWM:   progPwm();   break;   
-        }
-
-     }
+      }
 }
 
 void serialEvent(){
