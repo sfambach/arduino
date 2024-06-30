@@ -1,16 +1,18 @@
 /******************************************************************************
-* # Show the bouncing of a button switch
-* Input is simply redirected to output and the closure of button is counted
-* Press the button once and you might see that the ouput counter will be 
-* increase more than one time. You cannot observer this each and every time you 
-* have to test it some times to get the result.
-* ## Settings
-* Define input and ouput pin
+# Show the bouncing of a button switch second attempt
+ Input is simply redirected to output and the closure of button is counted
+ Press the button once and you might see that the ouput counter will be 
+ increase more than one time. You cannot observer this each and every time you 
+ have to test it some times to get the result.
+ ## Settings
+ Define input and ouput pin
 * PIN_IN (Default GPIO18) - Input for the button
 * PIN_OUT (Default GPIO 19) - Output for measurement and/or LED
+ 
+## Credits
 * Licence: AGPL3
 * Author: S. Fambach
-* Visit http://www.fambach.net if you want
+Visit http://www.fambach.net if you want
 ******************************************************************************/
 
 
@@ -30,6 +32,7 @@
 #define PIN_OUT 19
 long countIn = 0;
 bool oldIn = false;
+int32_t timeStamp;
 
 /** Main Programm ************************************************************/
 void setup() {
@@ -47,17 +50,17 @@ void loop() {
   
   // simply write 1:1 the output
   digitalWrite(PIN_OUT,in); 
+  uint32_t  curTimeStamp = micros();
 
-  // check only for pressed if the value has changed
-  if(in && in != oldIn){
-      // increase button press counter
-      countIn ++;           
-  } 
+  if( in != oldIn && ((curTimeStamp - timeStamp) < 250 )){
+    DEBUG_PRINTLN(countIn);
+    countIn++;
+
+  }
     
-  // save the current value
-  oldIn = in;
-
   // output the current value
-  DEBUG_PRINTLN(countIn);
+  
+  timeStamp = curTimeStamp;
+  oldIn = in;
 }
 

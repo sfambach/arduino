@@ -57,7 +57,7 @@ void setup()   {
   Serial.begin(115200);
 
   // by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
-  display.begin(SSD1306_EXTERNALVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.begin(SSD1306_EXTERNALVCC, 0 x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   // init done
   Serial.print(" display started");
   // Show image buffer on the display hardware.
