@@ -51,15 +51,15 @@ char buffer[130];
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(); // Objekt zur Ansteuerung der Platine
 
 const uint16_t USMIN = 570; // 600 - Minimaler wert für den Servo in Microsekunden, bitte mit deinen Servos ausprobieren.
-const uint16_t USMAX = 2160; // 2400 - Maximaler Wert für den Servo, auch ausprobieren
+const uint16_t USMAX = 2250; // 2400 - Maximaler Wert für den Servo, auch ausprobieren
 #define SERVO_FREQ 50 // Servo Frequenz - Analog servos run at ~50 Hz updates
-
+#define SERVO_BOARD_ADDRESS 0x40
 /*****************************************************************************/
 // Setup for potis 
 
 /** alle Eingangspins */
 const uint8_t POTI_INPUTS[] = {A0,A1,A2,A3,A4,A5,A5,A7,A8,A9,A10,A11,A12,A13,A14,A15}; 
-uint16_t poti_last_value[]  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int16_t poti_last_value[]  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 /** Anzahl der genutzten potis muss der anzahl der Einträge im Array POTI_INPUTS ergeben.*/
 const uint8_t POTI_COUNT = 16; // 
@@ -68,7 +68,7 @@ const uint8_t POTI_COUNT = 16; //
 * der Wert sich um +/- THRESHOLD unterscheidet zu hohe Werte lassen die 
 * Einstellungen ungenau werden zu kleine Werte führe zum Springen der Servos
 */
-const uint8_t THRESHOLD = 2; 
+const uint8_t THRESHOLD = 3; 
 
 const uint16_t POTI_MAX_READ = 1024; // 1024 for 10 Bit ADC and 4096 for 12 bit ADC
 
@@ -84,7 +84,7 @@ void setup() {
   // schauen ob das board angeschlossen ist
   DEBUG_PRINTLN("Check Board");
   Wire.begin();
-  Wire.beginTransmission (0x40);
+  Wire.beginTransmission (SERVO_BOARD_ADDRESS);
   if (Wire.endTransmission () == 0)
   {
     DEBUG_PRINTLN("Board found");
@@ -126,7 +126,7 @@ void loop() {
   // frage alle potis nacheinander ab
   for(int potiNum = 0; potiNum < POTI_COUNT; potiNum++) {
     
-    uint16_t currentPotiValue = analogRead(POTI_INPUTS[potiNum]);
+    int16_t currentPotiValue = analogRead(POTI_INPUTS[potiNum]);
     // nur servo schalten wenn der wert größer dem threshold ist
     if( currentPotiValue < poti_last_value[potiNum] - THRESHOLD || 
         currentPotiValue > poti_last_value[potiNum] + THRESHOLD ){
