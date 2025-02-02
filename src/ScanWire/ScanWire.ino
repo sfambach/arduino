@@ -2,12 +2,10 @@
 #include <Wire.h> 
 
 void setup() {
-        Serial.begin (115200);
-        while (!Serial) {}
-        //Wire.begin(D5,D6);
-        Wire.begin();
-        //Wire.begin(D1,D2);
-        
+  // seriellen Port für Ausgaben starten
+  Serial.begin(9600);
+  delay(10); // gib dem Ganzen Zeit und lass es kurz ruhen ;)
+
 }  // end of setup
 
 void loop() {
