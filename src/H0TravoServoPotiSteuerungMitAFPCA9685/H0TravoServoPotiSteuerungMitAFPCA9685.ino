@@ -5,14 +5,18 @@ It can controll up to 16 servos with an Arduino Mega.
 
 ## Settings
 Setup in the code below
-SERVOMIN
-SERVOMAX
-POTI_INPUTS
-POTI_COUNT
-THESHOLD
+* SERVOMIN
+* SERVOMAX
+* POTI_INPUTS
+* POTI_COUNT
+* THESHOLD
 
 ## Libs
 https://github.com/adafruit/Adafruit-PWM-Servo-Driver-Library
+
+## Hardware 
+* Arduino Mega
+* PCA9685 16 Channel Servo Driver
 
 ## Credits 
 * Licence: AGPL3
@@ -58,7 +62,7 @@ const uint8_t POTI_INPUTS[] = {A0,A1,A2,A3,A4,A5,A5,A7,A8,A9,A10,A11,A12,A13,A14
 uint16_t poti_last_value[]  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 /** Anzahl der genutzten potis muss der anzahl der Einträge im Array POTI_INPUTS ergeben.*/
-const uint8_t POTI_COUNT = 1; // 
+const uint8_t POTI_COUNT = 16; // 
 
 /* Damit die servos nicht hin und herspringen, wird nur was geändert wenn 
 * der Wert sich um +/- THRESHOLD unterscheidet zu hohe Werte lassen die 
