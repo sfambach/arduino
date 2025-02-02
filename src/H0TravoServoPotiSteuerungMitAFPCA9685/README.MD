@@ -1,6 +1,6 @@
 # Description
 Control for Servos via adjustable resitors
-It can controll up to 16 servos with an Arduino Mega.
+It can control up to 16 servos with an Arduino Mega.
 
 <img src="./img/SketchOneServoOnePoti.jpg">
 
